@@ -1,0 +1,15 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="<%= root_path %>">Writter</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <%= link_to 'Home', root_path, class: "nav-link #{active_class(:home)}", aria: { current: current_page?(root_path) ? 'page' : nil } %>
+        <%= link_to 'About', about_path, class: "nav-link #{active_class(:about)}", aria: { current: current_page?(about_path) ? 'page' : nil } %>
+        <%= link_to 'Contact', contact_path, class: "nav-link #{active_class(:contact)}", aria: { current: current_page?(contact_path) ? 'page' : nil } %>
+      </div>
+    </div>
+  </div>
+</nav>
