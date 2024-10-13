@@ -7,10 +7,13 @@ class Ability
     # Allow everyone to read posts that are published (published: "published")
     can :read, Post, published: "published"
 
-    # Allow users to manage (edit, update, destroy) their own posts
-    can [:edit, :update, :destroy], Post, user_id: user.id
+    if user.persisted? 
+      can :create, Post
+      # Allow users to manage (edit, update, destroy) their own posts
+      can [:edit, :update, :destroy], Post, user_id: user.id
 
-    # Allow users to manage (create, edit, destroy) their own comments
-    can [:create, :edit, :destroy], Comment, user_id: user.id
+      # Allow users to manage (create, edit, destroy) their own comments
+      can [:create, :edit, :destroy], Comment, user_id: user.id
+    end
   end
 end
