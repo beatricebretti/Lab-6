@@ -15,17 +15,20 @@ Comment.delete_all
 
 # Users
 users = User.create!([
-  { email: 'john.doe@gmail.com', first_name: 'John', last_name: 'Doe' },
-  { email: 'jane.smith@gmail.com', first_name: 'Jane', last_name: 'Smith' },
-  { email: 'juan.perez@gmail.com', first_name: 'Juan', last_name: 'Perez' },
-  { email: 'beatrice.valdes@gmail.com', first_name: 'Beatrice', last_name: 'Valdes' },
-  { email: 'thomas.johansen@gmail.com', first_name: 'Thomas', last_name: 'Johansen' },
-  { email: 'mark.thompson@gmail.com', first_name: 'Mark', last_name: 'Thompson' },
-  { email: 'elon.musk@gmail.com', first_name: 'Elon', last_name: 'Musk' },
-  { email: 'will.smith@gmail.com', first_name: 'Will', last_name: 'Smith' },
-  { email: 'luis.bretti@gmail.com', first_name: 'Luis', last_name: 'Bretti' },
-  { email: 'peter.johnson@gmail.com', first_name: 'Peter', last_name: 'Johnson' }
+  { email: 'john.doe@gmail.com', first_name: 'John', last_name: 'Doe', password: 'password123', password_confirmation: 'password123' },
+  { email: 'jane.smith@gmail.com', first_name: 'Jane', last_name: 'Smith', password: 'password123', password_confirmation: 'password123' },
+  { email: 'juan.perez@gmail.com', first_name: 'Juan', last_name: 'Perez', password: 'password123', password_confirmation: 'password123' },
+  { email: 'beatrice.valdes@gmail.com', first_name: 'Beatrice', last_name: 'Valdes', password: 'password123', password_confirmation: 'password123' },
+  { email: 'thomas.johansen@gmail.com', first_name: 'Thomas', last_name: 'Johansen', password: 'password123', password_confirmation: 'password123' },
+  { email: 'mark.thompson@gmail.com', first_name: 'Mark', last_name: 'Thompson', password: 'password123', password_confirmation: 'password123' },
+  { email: 'elon.musk@gmail.com', first_name: 'Elon', last_name: 'Musk', password: 'password123', password_confirmation: 'password123' },
+  { email: 'will.smith@gmail.com', first_name: 'Will', last_name: 'Smith', password: 'password123', password_confirmation: 'password123' },
+  { email: 'luis.bretti@gmail.com', first_name: 'Luis', last_name: 'Bretti', password: 'password123', password_confirmation: 'password123' },
+  { email: 'peter.johnson@gmail.com', first_name: 'Peter', last_name: 'Johnson', password: 'password123', password_confirmation: 'password123' }
 ])
+
+# Get a default user for the posts (the first user in this case)
+default_user = User.first
 
 # Posts
 posts = Post.create!([
@@ -33,61 +36,71 @@ posts = Post.create!([
     title: 'The Future of Technology', 
     content: 'The future of technology is looking incredibly promising. From advancements in AI and machine learning to space exploration, the possibilities are endless. Companies like SpaceX and Tesla are pushing the boundaries of what we thought was possible, and it’s exciting to see where this will take us in the next decade.', 
     published: 1, 
-    author: 'elon.musk@gmail.com'
+    author: 'elon.musk@gmail.com',
+    user_id: default_user.id # Assign the user_id
   },
   { 
     title: 'Climate Change and its Impact', 
     content: 'Climate change is one of the most pressing issues of our time. The effects are already being felt around the world, from extreme weather events to rising sea levels. It’s crucial that we take action now to reduce our carbon footprint and invest in renewable energy sources. The future of our planet depends on it.', 
     published: 1, 
-    author: 'jane.smith@gmail.com'
+    author: 'jane.smith@gmail.com',
+    user_id: default_user.id # Assign the user_id
   },
   { 
     title: 'The Importance of Education', 
     content: 'Education is the foundation of a successful society. It provides individuals with the knowledge and skills they need to thrive in their personal and professional lives. Investing in education, particularly in STEM fields, is essential for the continued growth and development of our global economy.', 
     published: 1, 
-    author: 'john.doe@gmail.com'
+    author: 'john.doe@gmail.com',
+    user_id: default_user.id # Assign the user_id
   },
   { 
     title: 'Exploring the Great Outdoors', 
     content: 'There’s nothing quite like spending time in nature. Whether it’s hiking through the mountains, camping under the stars, or simply taking a walk in the park, being outdoors has numerous benefits for both physical and mental health. It’s important to take time out of our busy lives to connect with the natural world.', 
     published: 0, 
-    author: 'thomas.johansen@gmail.com'
+    author: 'thomas.johansen@gmail.com',
+    user_id: default_user.id # Assign the user_id
   },
   { 
     title: 'The Role of Art in Society', 
     content: 'Art plays a vital role in society. It allows individuals to express themselves, challenges societal norms, and provides a window into different cultures and perspectives. Whether it’s through painting, music, literature, or film, art has the power to inspire and bring people together.', 
     published: 1, 
-    author: 'beatrice.valdes@gmail.com'
+    author: 'beatrice.valdes@gmail.com',
+    user_id: default_user.id # Assign the user_id
   },
   { 
     title: 'The Benefits of a Healthy Diet', 
     content: 'Maintaining a healthy diet is essential for overall well-being. A balanced diet provides the body with the nutrients it needs to function properly and can prevent a range of health issues, including heart disease, diabetes, and obesity. Incorporating more fruits, vegetables, and whole grains into your diet is a great place to start.', 
     published: 0, 
-    author: 'mark.thompson@gmail.com'
+    author: 'mark.thompson@gmail.com',
+    user_id: default_user.id # Assign the user_id
   },
   { 
     title: 'The Impact of Social Media', 
     content: 'Social media has completely transformed the way we communicate and interact with the world. While it has its benefits, such as connecting people across the globe, it also has its drawbacks, including the spread of misinformation and the impact on mental health. It’s important to use social media mindfully and be aware of its potential effects.', 
     published: 1, 
-    author: 'juan.perez@gmail.com'
+    author: 'juan.perez@gmail.com',
+    user_id: default_user.id # Assign the user_id
   },
   { 
     title: 'Advancements in Renewable Energy', 
     content: 'Renewable energy is the key to a sustainable future. With advancements in solar, wind, and hydroelectric power, we are moving closer to a world that relies less on fossil fuels and more on clean, renewable sources of energy. These advancements not only benefit the environment but also create new job opportunities and drive economic growth.', 
     published: 1, 
-    author: 'peter.johnson@gmail.com'
+    author: 'peter.johnson@gmail.com',
+    user_id: default_user.id # Assign the user_id
   },
   { 
     title: 'The Rise of Remote Work', 
     content: 'Remote work has become increasingly popular, particularly in the wake of the COVID-19 pandemic. It offers employees more flexibility and work-life balance, while also allowing companies to tap into a global talent pool. However, it also comes with challenges, such as maintaining company culture and ensuring effective communication.', 
     published: 0, 
-    author: 'will.smith@gmail.com'
+    author: 'will.smith@gmail.com',
+    user_id: default_user.id # Assign the user_id
   },
   { 
     title: 'Exploring New Culinary Trends', 
     content: 'The culinary world is constantly evolving, with new trends emerging all the time. From plant-based diets to fusion cuisine, there’s always something new to explore. These trends not only reflect changes in consumer preferences but also highlight the creativity and innovation of chefs and food enthusiasts around the world.', 
     published: 1, 
-    author: 'luis.bretti@gmail.com'
+    author: 'luis.bretti@gmail.com',
+    user_id: default_user.id # Assign the user_id
   }
 ])
 

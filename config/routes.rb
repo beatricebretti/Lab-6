@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
+  devise_for :users
+  devise_scope :user do  
+    get '/users/sign_out' => 'devise/sessions#destroy'     
+ end
   get "posts/index"
   get "posts/show"
+
+  resources :posts, only: [:index, :show, :new, :create]
+  resources :posts do
+    resources :comments, only: [:create]
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -16,9 +25,5 @@ Rails.application.routes.draw do
   root "static_pages#home"
   get "/home", to: "static_pages#home"
   get "/about", to: "static_pages#about"
-  get "/contact", to: "static_pages#contact"
-
-  Rails.application.routes.draw do
-    resources :posts, only: [:index, :show]
-  end
+  get "/contact", to: "static_pages#contact"  
 end
