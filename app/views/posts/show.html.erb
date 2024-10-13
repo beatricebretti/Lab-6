@@ -11,6 +11,7 @@
   <% @comments.each do |comment| %>
     <li class="list-group-item">
       <strong><%= comment.author %></strong>: <%= comment.content %>
+      
     </li>
   <% end %>
 </ul>
@@ -22,5 +23,11 @@
         <% end %>
 
 <%= link_to 'Back to Posts', posts_path, class: "btn btn-secondary" %>
-<%= link_to 'Edit Post', edit_post_path(@post), class: "btn btn-warning" %>
+<% if can? :destroy, @post %>
+  <%= link_to 'Delete Post', @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+<% end %>
+
+<%if can? :edit, @post %>
+  <%= link_to 'Edit Post', edit_post_path(@post), class: "btn btn-warning" %>
+<% end %>
 

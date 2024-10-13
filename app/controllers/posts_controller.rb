@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:show, :edit, :update]
+  before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   def index
-    @posts = Post.all
-    logger.debug "Posts: #{@posts.inspect}" 
+    @posts = Post.published
   end
 
   def show
@@ -17,7 +17,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    @post.author = current_user.email  # Automatically set the author's email
+    @post.author = current_user.email  
     
     if @post.save
       redirect_to @post, notice: "Post was successfully created."
@@ -37,6 +37,12 @@ class PostsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_url, notice: "Post was successfully deleted."
   end
 
   private

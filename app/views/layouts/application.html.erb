@@ -19,8 +19,20 @@
     
     <body class="d-flex flex-column min-vh-100">
     <%= render partial: 'layouts/navbar'%>
+    
     <main class="flex-fill mt-4">
       <div class="container">
+      <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <div class="alert alert-danger">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
         <%= yield %>
       </div>
     </main>

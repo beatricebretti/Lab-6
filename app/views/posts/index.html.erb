@@ -13,7 +13,6 @@
       <th>Author</th>
       <th>Published</th>
       <th></th>
-      <th></th>
     </tr>
   </thead>
   <tbody class="table-group-divider">
@@ -24,7 +23,6 @@
           <td><%= post.author %></td>
           <td><%= post.published? ? 'Published' : 'Unpublished' %></td>
           <td><%= link_to 'View', post_path(post), class: "btn btn-primary" %></td>
-          <td><%= link_to 'Edit', edit_post_path(post), class: "btn btn-warning" %></td>
         </tr>
       <% end %>
     <% else %>
